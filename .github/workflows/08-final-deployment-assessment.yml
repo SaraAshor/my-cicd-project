@@ -17,6 +17,12 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+
   build-and-push:
     needs: verify
     runs-on: ubuntu-latest
